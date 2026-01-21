@@ -1,0 +1,44 @@
+
+header {
+    min-height: 100vh;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+input, button {
+    width: 100%;
+    height: 40px;
+    margin: 2px;
+    font-size: 1rem;
+}
+
+#tabela-horiz{
+    display: none;
+}
+
+#cards-vert{
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 667px) {
+    #tabela-horiz{
+        display: table;
+        width: 100%;
+    }
+    #cards-vert{
+        display: none;
+    }
+}

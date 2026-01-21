@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca CEP</title>
+</head>
+<body>
+    <header>
+        <form id="form1">
+            <Label for="CEP">Seu CEP:</Label><br>
+            <input id="CEP" type="text" placeholder="00000-000" maxlength="9" pattern="\d{5}-\d{3}" autocomplete="postal-code" inputmode="numeric" required>
+            <button type="submit" >Ir</button>
+        </form>
+        <div id="resposta">
+            <table border="1" id="tabela-horiz">
+                <tr>
+                    <th>Localidade/uf</th>
+                    <th>Região</th>
+                    <th>Bairro</th>
+                    <th>Complemento</th>
+                    <th>Logradouro</th>
+                    <th>IBGE</th>
+                    <th>GIA</th>
+                    <th>DDD</th>
+                    <th>siafi</th>
+                </tr>
+                <tr>
+                    <td data-inf="localidade"></td>
+                    <td data-inf="regiao"></td>
+                    <td data-inf="bairro"></td>
+                    <td data-inf="complemento"></td>
+                    <td data-inf="logradouro"></td>
+                    <td data-inf="ibge"></td>
+                    <td data-inf="gia"></td>
+                    <td data-inf="ddd"></td>
+                    <td data-inf="siafi"></td>
+                </tr>
+            </table>
+            <div id="cards-vert">
+                    <p>Localidade: <span data-inf="localidade"></span></p>
+                    <p>Região: <span data-inf="regiao"></span></p>
+                    <p>Bairro: <span data-inf="bairro"></span></p>
+                    <p>Complemento: <span data-inf="complemento"></span></p>
+                    <p>Logradouro: <span data-inf="logradouro"></span></p>
+                    <p>IBGE:<span data-inf="ibge"></span></p>
+                    <p>GIA:<span data-inf="gia"></span></p>
+                    <p>DDD:<span data-inf="ddd"></span></p>
+                    <p>siafi:<span data-inf="siafi"></span></p>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
