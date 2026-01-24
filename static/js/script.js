@@ -34,12 +34,6 @@ async function rst_CEP(event, CEP) {
 
     console.log(rst)
     console.log(typeof rst.erro)
-    if (rst['erro']) {
-        console.log(CEP)
-        input.setCustomValidity("CEP inválido")
-        input.reportValidity()
-        return
-    }
     const infs = ['localidade', 'regiao', 'bairro', 'complemento', 'logradouro', 'ibge', 'gia', 'ddd', 'siafi']
 
     for (const inf of infs) {
