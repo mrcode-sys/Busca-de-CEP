@@ -8,7 +8,7 @@ async function rst_CEP(event, CEP) {
     event.preventDefault();
     console.log(CEP)
     CEP = format_to_rstCEP(CEP)
-    const url = 'https://viacep.com.br/ws/'+CEP+'/json/'
+    const url = '/api/cep/'+CEP
 
     console.log(url)
     let rst = ""
@@ -16,12 +16,20 @@ async function rst_CEP(event, CEP) {
         const resp = await fetch(url)
         console.log(resp.status)
         if (!resp.ok){
+            if (resp.status === 400) {
+                console.log(CEP)
+                input.setCustomValidity("CEP inválido")
+                input.reportValidity()
+                return
+            }
             throw new Error("A resposta não está certa: "+resp.statusText)
+            return
         }
         rst = await resp.json()
     } catch (err) {
         console.error('Ocorreu algum erro: '+err)
         alert("Ocorreu algum erro")
+        return
     }
 
     console.log(rst)
