@@ -1,7 +1,16 @@
-from flask import Flask, jsonify, request, render_template
-import requests
+from flask import Flask, render_template
+from extensions import db
+from flask_migrate import Migrate
 from routes.cep import cep_bp
+
 app = Flask(__name__)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db.init_app(app)
+
+migrate = Migrate(app, db)
 
 app.register_blueprint(cep_bp)
 
