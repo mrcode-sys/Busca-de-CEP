@@ -1,6 +1,7 @@
 from models.cep import Cep
 import requests
 from extensions import db
+from errors.errors import InvalidCEPError, ExternalAPIError
 
 class Search_cep():
     def __init__(self, val):
@@ -49,11 +50,11 @@ class Search_cep():
         print(resp.status_code)
 
         if resp.status_code != 200:
-            raise RuntimeError("Erro na API externa")
+            raise ExternalAPIError()
 
         data = resp.json()
         if "erro" in data:
-            raise ValueError("CEP inválido")
+            raise InvalidCEPError()
         
         if self.not_infs:
             self.updt_db(data)

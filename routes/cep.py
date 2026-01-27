@@ -8,11 +8,7 @@ cep_bp = Blueprint("cep", __name__, url_prefix="/api/cep")
 
 @cep_bp.route("<val>")
 def request_cep(val):
-    try:
-        sc = Search_cep(val)
-        data = sc.search()
-        return jsonify(data), 200
-    except ValueError:
-        return jsonify({"erro":True}), 400
-    except RuntimeError:
-        return jsonify({"erro":True}), 502
+
+    sc = Search_cep(val)
+    data = sc.search()
+    return jsonify(data), 200
