@@ -23,7 +23,6 @@ async function rst_CEP(event, CEP) {
                 return
             }
             throw new Error("A resposta não está certa: "+resp.statusText)
-            return
         }
         rst = await resp.json()
     } catch (err) {

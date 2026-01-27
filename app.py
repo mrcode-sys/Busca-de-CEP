@@ -28,6 +28,7 @@ def handle_ext_api_error(error):
 
 @app.errorhandler(Exception)
 def handle_generic_error(error):
+    app.logger.exception(error)
     return jsonify({"erro": "Erro interno"}), 500
 
 if __name__ == "__main__":

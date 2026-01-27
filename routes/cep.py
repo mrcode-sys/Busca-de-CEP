@@ -11,4 +11,5 @@ def request_cep(val):
 
     sc = Search_cep(val)
     data = sc.search()
+    print(data)
     return jsonify(data), 200
