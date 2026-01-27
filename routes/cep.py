@@ -50,13 +50,13 @@ def search_cep(val):
     if "erro" in data:
         return jsonify({"erro":True}), 400
     
-    if not_infs:
+    if not_infs and cep_db:
         for i in not_infs:
             setattr(cep_db, i, data.get(i))
 
         db.session.commit()
 
-        return jsonify(cep_db)
+        return jsonify(cep_db.to_dict()), 200
 
     print("Salvando CEP")
     new = Cep(
