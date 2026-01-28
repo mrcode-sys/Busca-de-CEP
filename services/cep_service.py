@@ -29,19 +29,20 @@ class Search_cep():
         ]
         self.not_infs = []
     def search(self):
+        status = 200
         data = self.database_search()
 
         if not data:
             data = self.api_search()
+            status = 201
 
-        return data
+        return data, status
 
     def database_search(self):
 
         if self.cep_db:
             self.not_in_inf()
 
-            print("Carregando do Banco de Dados")
             if not self.not_infs:
                 return self.cep_db.to_dict()
 

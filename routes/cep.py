@@ -11,6 +11,5 @@ cep_bp = Blueprint("cep", __name__, url_prefix="/api/cep")
 def request_cep(val):
 
     sc = Search_cep(val)
-    data = sc.search()
-    print(data)
-    return sucess_response(data, 200)
+    data, status = sc.search()
+    return sucess_response(data, status)

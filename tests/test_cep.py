@@ -1,6 +1,6 @@
 def test_cep_valido(client):
     resp = client.get("/api/cep/01001000")
-    assert resp.status_code == 200
+    assert resp.status_code == 201
 
     data = resp.get_json()
     assert "logradouro" in data['data']
