@@ -12,6 +12,7 @@ async function rst_CEP(event, CEP) {
 
     console.log(url)
     let rst = ""
+    let data = ""
     try {
         const resp = await fetch(url)
         console.log(resp.status)
@@ -22,9 +23,11 @@ async function rst_CEP(event, CEP) {
                 input.reportValidity()
                 return
             }
-            throw new Error("A resposta não está certa: "+resp.statusText)
+            throw new Error('Resposta inválida: '+resp.statusText)
         }
         rst = await resp.json()
+        data = rst['data']
+        
     } catch (err) {
         console.error('Ocorreu algum erro: '+err)
         alert("Ocorreu algum erro")
@@ -32,17 +35,16 @@ async function rst_CEP(event, CEP) {
     }
 
     console.log(rst)
-    console.log(typeof rst.erro)
     const infs = ['localidade', 'regiao', 'bairro', 'complemento', 'logradouro', 'ibge', 'gia', 'ddd', 'siafi']
 
     for (const inf of infs) {
         if (inf == 'localidade'){
-            document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = rst[inf]+", "+rst['uf'])
+            document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = data[inf]+", "+data['uf'])
             continue;
         }
         console.log(inf)
-        console.log(rst[inf])
-        document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = rst[inf])
+        console.log(data[inf])
+        document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = data[inf])
     }
 }
 

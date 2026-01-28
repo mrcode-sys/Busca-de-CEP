@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 from models.cep import Cep
+from utils.responses import sucess_response
 import requests
 from extensions import db
 from services.cep_service import Search_cep
@@ -12,4 +13,4 @@ def request_cep(val):
     sc = Search_cep(val)
     data = sc.search()
     print(data)
-    return jsonify(data), 200
+    return sucess_response(data, 200)

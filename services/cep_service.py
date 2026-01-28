@@ -47,7 +47,7 @@ class Search_cep():
         url = f"https://viacep.com.br/ws/{self.val}/json/"
 
         try:
-            resp = requests.get(url, timeout=3)
+            resp = requests.get(url, timeout=7)
             
         except requests.RequestException:
             raise ExternalAPIError()
