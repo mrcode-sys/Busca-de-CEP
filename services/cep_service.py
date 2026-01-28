@@ -1,12 +1,17 @@
 from models.cep import Cep
 import requests
+import re
 from extensions import db
 from errors.errors import InvalidCEPError, ExternalAPIError
 
 class Search_cep():
     def __init__(self, val):
 
-        self.val = val.replace("-", "")
+        self.val = re.sub(r"\D", "", val)
+        
+        if len(val) != 8:
+            raise InvalidCEPError()
+        
         self.cep_db = Cep.query.filter_by(cep=self.val).first()
 
         self.infs = [       

@@ -18,4 +18,4 @@ def test_cep_cache(client):
 def test_cep_error_format(client):
     resp = client.get("/api/cep/010010000")
 
-    assert resp.status_code == 503
+    assert resp.status_code == 400
