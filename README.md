@@ -45,7 +45,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install flask requests flask_Migrate flask_sqlalchemy
+pip install -r requeriments.txt
 ```
 
 Crie o banco:
@@ -77,7 +77,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install flask requests flask_Migrate flask_sqlalchemy
+pip install -r requeriments.txt
 ```
 
 Crie o banco:
@@ -110,7 +110,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install flask requests flask_Migrate flask_sqlalchemy
+pip install -r requeriments.txt
 ```
 
 Crie o banco:
@@ -139,7 +139,7 @@ env\Scripts\activate.bat
 
 Instale as dependências:
 ```
-pip install flask requests flask_Migrate flask_sqlalchemy
+pip install -r requeriments.txt
 ```
 
 Crie o banco:
@@ -156,6 +156,12 @@ Acesse no navegador:
 
 http://127.0.0.1:5000/
 
+## Execução dos testes
+Para a execução dos testes é necessário que o módulo **[Executar](#executar)** esteja concluído.  
+Execução do pytest:
+```
+python3 -m pytest
+```
 
 ## Observações
 Caso ocorra erro relacionado à tabela `cep`, execute os comandos abaixo na pasta raiz do projeto:
