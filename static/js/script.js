@@ -6,19 +6,15 @@ function format_to_rstCEP(CEP) {
 
 async function rst_CEP(event, CEP) {
     event.preventDefault();
-    console.log(CEP)
     CEP = format_to_rstCEP(CEP)
     const url = '/api/cep/'+CEP
 
-    console.log(url)
     let rst = ""
     let data = ""
     try {
         const resp = await fetch(url)
-        console.log(resp.status)
         if (!resp.ok){
             if (resp.status === 400) {
-                console.log(CEP)
                 input.setCustomValidity("CEP inválido")
                 input.reportValidity()
                 return
@@ -34,7 +30,6 @@ async function rst_CEP(event, CEP) {
         return
     }
 
-    console.log(rst)
     const infs = ['localidade', 'regiao', 'bairro', 'complemento', 'logradouro', 'ibge', 'gia', 'ddd', 'siafi']
 
     for (const inf of infs) {
@@ -42,14 +37,12 @@ async function rst_CEP(event, CEP) {
             document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = data[inf]+", "+data['uf'])
             continue;
         }
-        console.log(inf)
-        console.log(data[inf])
+
         document.querySelectorAll(`[data-inf="${inf}"]`).forEach(elmt => elmt.textContent = data[inf])
     }
 }
 
 function format(CEP) {
-    console.log(CEP)
     let valor = CEP.replace(/\D/g, '')
 
     valor = valor.replace(/(\d{5})(\d)/, "$1-$2")
