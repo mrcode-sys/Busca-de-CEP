@@ -1,8 +1,8 @@
-"""create cep table
+"""initial-table
 
-Revision ID: e6d742aca1b6
-Revises: cc4a9be05da4
-Create Date: 2026-01-27 17:57:09.049996
+Revision ID: 14aa456248b5
+Revises: 
+Create Date: 2026-02-02 20:55:56.304708
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e6d742aca1b6'
-down_revision = 'cc4a9be05da4'
+revision = '14aa456248b5'
+down_revision = None
 branch_labels = None
 depends_on = None
 
