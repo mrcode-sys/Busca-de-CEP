@@ -30,13 +30,15 @@ class Search_cep():
         self.not_infs = []
     def search(self):
         status = 200
+        cached = True
         data = self.database_search()
 
         if not data:
             data = self.api_search()
             status = 201
+            cached = False
 
-        return data, status
+        return data, status, cached
 
     def database_search(self):
 

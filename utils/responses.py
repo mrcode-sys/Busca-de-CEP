@@ -1,26 +1,16 @@
 from flask import jsonify
+err_messages = {
+    "Invalid_CEP_Error": "CEP inválido",
+    "External_API_Error": "Falha ao consultar API externa",
+    "Internal_Error": "Erro interno",
+}
 def code_message(code):
-    if code == "Invalid_CEP_Error":
-        message = "CEP Inválido"
+    return err_messages.get(code, "Erro desconhecido")
 
-    elif code == "External_API_Error":
-        message = "Falha na API externa"
-
-    elif code == "Internal_Error":
-        message = "Erro interno"
-
-    else:
-        message = "Erro desconhecido"
-        
-    return message
-
-def sucess_response(data, status=200):
-    cached = True
-    if status == 201:
-        cached = False
+def success_response(data, status=200, cached=False):
 
     return jsonify({
-        "sucess": True,
+        "success": True,
         "data": data,
         "cached": cached
     }), status
@@ -28,7 +18,7 @@ def sucess_response(data, status=200):
 def error_response(code, status):
     message = code_message(code)
     return jsonify({
-        "sucess": False,
+        "success": False,
         "error":{
             "code": code,
             "message": message
