@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template
 from extensions import db
 from flask_migrate import Migrate
 from routes.cep import cep_bp

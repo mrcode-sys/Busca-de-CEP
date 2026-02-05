@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 from models.cep import Cep
 from utils.responses import success_response
 import requests
