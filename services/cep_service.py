@@ -1,8 +1,11 @@
+from errors.errors import InvalidCEPError, ExternalAPIError
+from utils.cache_verification import cache_is_valid
+from datetime import datetime
+from flask import current_app
 from models.cep import Cep
+from extensions import db
 import requests
 import re
-from extensions import db
-from errors.errors import InvalidCEPError, ExternalAPIError
 
 class Search_cep():
     def __init__(self, val):
@@ -25,9 +28,12 @@ class Search_cep():
             "ibge",
             "gia",
             "ddd",
-            "siafi"
+            "siafi",
+            "updated_at",
         ]
         self.not_infs = []
+        self.cache_valid = ""
+
     def search(self):
         status = 200
         cached = True
@@ -41,18 +47,25 @@ class Search_cep():
         return data, status, cached
 
     def database_search(self):
-
         if self.cep_db:
+            self.cache_valid = cache_is_valid(self.cep_db.updated_at, current_app.config["CEP_CACHE_TTL_HOURS"])            
+            print(self.cache_valid)
             self.not_in_inf()
 
-            if not self.not_infs:
+            if not self.not_infs and self.cache_valid:
                 return self.cep_db.to_dict()
+
+            elif not self.cache_valid:
+                print("Dados do CEP expirados")
 
             else:
                 print("Ausência de informação no database")
+            
+            return None
 
     def api_search(self):
         url = f"https://viacep.com.br/ws/{self.val}/json/"
+        print(url)
 
         try:
             resp = requests.get(url, timeout=7)
@@ -70,14 +83,20 @@ class Search_cep():
         if "erro" in data:
             raise InvalidCEPError()
         
+        print(data)
+
         if self.not_infs:
             self.updt_db(data)
+
+        elif not self.cache_valid and self.cep_db:
+            self.updt_all_db(data)
         else:
             self.save_cep(data)
         return data
 
     def save_cep(self, data):
         print("Salvando CEP")
+
         new = Cep(
             cep = self.val,
             localidade = data.get("localidade"),
@@ -90,6 +109,7 @@ class Search_cep():
             gia = data.get("gia"),
             ddd = data.get("ddd"),
             siafi = data.get("siafi"),
+            updated_at = datetime.now()
         )
 
         db.session.add(new)
@@ -100,6 +120,23 @@ class Search_cep():
     def updt_db(self, data):
         for i in self.not_infs:
             setattr(self.cep_db, i, data.get(i))
+
+        self.cep_db.updated_at = datetime.now()
+
+        db.session.commit()
+
+        return self.cep_db.to_dict()
+
+    def updt_all_db(self, data):
+        print(data)
+        for field in self.infs:
+
+            if field == "updated_at":
+                continue
+            print(data)
+            setattr(self.cep_db, field, data.get(field))
+
+        self.cep_db.updated_at = datetime.now()
 
         db.session.commit()
 

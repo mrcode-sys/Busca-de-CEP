@@ -1,13 +1,14 @@
 from flask import Flask, render_template
 from extensions import db
-from flask_migrate import Migrate
+from config import Config
 from routes.cep import cep_bp
+from flask_migrate import Migrate
 from errors.errors import AppError
 from utils.responses import error_response
+
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///../instance/database.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config.from_object(Config)
 
 db.init_app(app)
 
