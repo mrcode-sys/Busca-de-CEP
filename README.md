@@ -25,7 +25,16 @@ O sistema consome uma API externa e exibe informações como localidade, UF, bai
 ## Executar
 Siga os passos abaixo para executar o projeto localmente.
 
-### Caso esteja utilizando sistemas Linux baseados em Debian:
+### Caso esteja utilizando sistemas Linux:
+Conceda a permissão de execução para os arquivos `install.sh`, `run.sh`, `test.sh`.  
+Poderá conceder essa permissão clicando com o botão direito no arquivo, localizando a permissão e à habilitando. Ou com o comando `chmod +x arquivo.sh`. Substitua arquivo.sh pelos arquivos que necessitam da permissão.  
+  
+Execute o arquivo `install.sh` para instalar os requisitos e iniciar o programa.  
+Execute o arquivo `run.sh` para iniciar o programa.  
+Execute o arquivo `test.sh` para iniciar os testes.  
+
+### Ou siga esses passos para instalar manualmente:
+#### Caso esteja utilizando sistemas Linux baseados em Debian:
 Instalar Python 3:
 ```
 sudo apt update
@@ -39,13 +48,13 @@ sudo apt install python3-pip
 
 Criar e iniciar ambiente virtual:
 ```
-python3 -m venv env
-source env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 Instale as dependências:
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -55,10 +64,14 @@ flask db upgrade
 
 Execute a aplicação:
 ```
-python3 app.py
+flask run
 ```
 
-### Caso esteja utilizando sistemas Linux baseados em fedora:
+Acesse no navegador:
+
+http://127.0.0.1:5000/
+
+#### Caso esteja utilizando sistemas Linux baseados em fedora:
 Instalar Python 3:
 ```
 sudo dnf install python3
@@ -71,13 +84,13 @@ sudo dnf install python3-pip
 
 Criar e iniciar ambiente virtual:
 ```
-python3 -m venv env
-source env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 Instale as dependências:
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -87,10 +100,14 @@ flask db upgrade
 
 Execute a aplicação:
 ```
-python3 app.py
+flask run
 ```
 
-### Caso esteja utilizando sistemas Linux baseados em Arch:
+Acesse no navegador:
+
+http://127.0.0.1:5000/
+
+#### Caso esteja utilizando sistemas Linux baseados em Arch:
 Instalar Python 3:
 ```
 sudo pacman -Syu
@@ -104,13 +121,13 @@ sudo pacman -S python-pip
 
 Criar e iniciar ambiente virtual:
 ```
-python3 -m venv env
-source env/bin/activate
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
 Instale as dependências:
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -120,7 +137,7 @@ flask db upgrade
 
 Execute a aplicação:
 ```
-python3 app.py
+flask run
 ```
 
 Acesse no navegador:
@@ -128,18 +145,18 @@ Acesse no navegador:
 http://127.0.0.1:5000/
 
 
-### Windows
+#### Windows
 Instale o Python em https://www.python.org/
 
 Crie e ative um ambiente virtual:
 ```
-python3 -m venv env
-env\Scripts\activate.bat
+python3 -m venv .venv
+.venv\Scripts\activate.bat
 ```
 
 Instale as dependências:
 ```
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -149,7 +166,7 @@ flask db upgrade
 
 Execute a aplicação:
 ```
-python app.py
+flask run
 ```
 
 Acesse no navegador:
