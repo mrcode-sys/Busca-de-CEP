@@ -45,7 +45,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -77,7 +77,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -110,7 +110,7 @@ source env/bin/activate
 
 Instale as dependências:
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 Crie o banco:
@@ -139,7 +139,7 @@ env\Scripts\activate.bat
 
 Instale as dependências:
 ```
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
 
 Crie o banco:
