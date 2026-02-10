@@ -17,8 +17,8 @@ source .venv/bin/activate
 
 if command_exists pytest;then
     echo "Running pytest"
-    python3 -m pytest
-    & wait
+    python3 -m pytest &
+    wait
 
 else
     ./install.sh -nr
