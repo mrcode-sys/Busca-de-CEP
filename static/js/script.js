@@ -46,11 +46,27 @@ async function rst_CEP(CEP, event = null) {
 }
 
 function format(CEP) {
-    let valor = CEP.replace(/\D/g, '')
+    let value = CEP.value;
 
-    valor = valor.replace(/(\d{5})(\d)/, "$1-$2")
+    let cursorPosition = CEP.selectionStart;
+    const originalLength = value.length;
 
-    document.getElementById('CEP').value = valor
+    let formatedValue = value.replace(/\D/g, '');
+    console.log(formatedValue)
+    if (formatedValue.length > 5) {
+        formatedValue = formatedValue.replace(/(\d{5})(\d)/, "$1-$2");
+    }
+
+    CEP.value = formatedValue
+
+    const lengthDifference = formatedValue.length - originalLength;
+    let newPosition = cursorPosition + lengthDifference;
+
+    if (newPosition === 6 && formatedValue.charAt(5) === '-') {
+        if (lengthDifference < 0) newPosition = 5; 
+    }
+
+    CEP.setSelectionRange(newPosition, newPosition);
 }
 
 document.getElementById("form1").addEventListener("submit", (event) => {
@@ -59,7 +75,7 @@ document.getElementById("form1").addEventListener("submit", (event) => {
 })
 
 input.addEventListener("input", (event) =>{
-    format(event.target.value)
+    format(event.target)
     input.setCustomValidity("")
 
 })
