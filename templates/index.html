@@ -2,14 +2,33 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script src="../static/js/script.js" defer></script>
     <link rel="stylesheet" href="../static/css/style.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Busca CEP</title>
   </head>
   <body>
-    <nav></nav>
+    <nav>
+      <button id="open-history-button" class="history-button">
+        <svg class="history-icon">
+          <use href="../static/icons/history.svg#icon-history"></use>
+        </svg>
+      </button>
+    </nav>
+    <div class="history-sobreposition hidden">
+      <div id="close-history" class="history-back-container"></div>
+      <div id="history-menu" class="history-container">
+        <div class="history-top-container">
+          <h4>Histórico</h4>
+          <button id="clear-all-button" class="history-trash-button">
+            <svg class="trash-icon">
+              <use href="../static/icons/history.svg#icon-trash"></use>
+            </svg>
+          </button>
+        </div>
+        <div id="items-container"></div>
+      </div>
+    </div>
     <header>
       <form id="form1">
         <label for="CEP">Seu CEP:</label><br />
@@ -63,5 +82,9 @@
         </div>
       </div>
     </header>
+
+    <script src="../static/js/script.js" defer></script>
+    <script src="../static/js/manageHistory.js" defer></script>
+    <script src="../static/js/style.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg">  <!-- Alteramos o viewBox para focar apenas na área onde o relógio está desenhado -->
+  <symbol id="icon-history" viewBox="28 8 105 105.5">
+    <g style="transform-origin: 80.1299px 60.8768px;">
+    <path d="M 42.415 17.723 L 43.173 31.918 C 65.669 3.264 110.745 9.712 124.311 43.519 C 137.727 76.952 110.348 112.521 74.593 108.103 C 42.813 104.178 24.029 70.478 37.399 41.382" stroke-linecap="round" fill="none" stroke="currentColor" style="stroke-width: 9px; stroke-linejoin: round; stroke-dasharray: 188, 12, 15, 12, 15, 12, 15, 12, 15;"/>
+    <path id="m-pointer" d="M 80.074 37.214 L 80.1 61" stroke-linecap="round" stroke="currentColor" style="stroke-width: 10px; transform-box: fill-box; transform-origin: 50% 50%;" transform="matrix(-1, 0, 0, -1, -0.000015, -0.000002)"/>
+    <path id="h-pointer" d="M 80 61.5 L 104.996 83.404" stroke-linecap="round" stroke="currentColor" style="stroke-width: 10px;"/>
+    </g>
+  </symbol>
+  <symbol id="icon-trash" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 6h18"/>
+    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+    <line x1="10" y1="11" x2="10" y2="17"/>
+    <line x1="14" y1="11" x2="14" y2="17"/>
+  </symbol>
+</svg>

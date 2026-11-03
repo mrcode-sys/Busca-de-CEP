@@ -4,8 +4,11 @@ function format_to_rstCEP(CEP) {
     return CEP.replace(/\D/g, '')
 }
 
-async function rst_CEP(event, CEP) {
-    event.preventDefault();
+async function rst_CEP(CEP, event = null) {
+    if (event) {
+        event.preventDefault();
+    }
+    addNewCep(CEP)
     CEP = format_to_rstCEP(CEP)
     const url = '/api/cep/'+CEP
 
@@ -51,7 +54,7 @@ function format(CEP) {
 }
 
 document.getElementById("form1").addEventListener("submit", (event) => {
-    rst_CEP(event, CEP.value)
+    rst_CEP(CEP.value, event)
 
 })
 
