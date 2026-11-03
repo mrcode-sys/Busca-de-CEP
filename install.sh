@@ -89,11 +89,9 @@ flask db upgrade
 
 trap "kill 0" EXIT
 
-echo "opening the app.py"
-flask run &
-if [ "$1" = "-nr" ]; then
-    echo "closing app.py..."
-    sleep 5
-    exit 1
+if [ "$1" = "--run" ]; then
+    echo "opening the app.py"
+    flask run &
+    wait
 fi
-wait
+exit 0
